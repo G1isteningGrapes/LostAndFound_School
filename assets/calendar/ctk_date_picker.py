@@ -3,6 +3,8 @@ import customtkinter as ctk
 from datetime import datetime
 import calendar
 
+cols = [  "#FDF0D5",  "#669BBC",   "#003049",   "#780000"] # added this for the calendar to look more consistent
+
 class CTkDatePicker(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
         """
@@ -17,7 +19,7 @@ class CTkDatePicker(ctk.CTkFrame):
 
         super().__init__(master, **kwargs)
 
-        self.date_entry = ctk.CTkEntry(self)
+        self.date_entry = ctk.CTkEntry(self, width=90, fg_color= "transparent")
         self.date_entry.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 
         self.calendar_button = ctk.CTkButton(self, text="▼", width=20, command=self.open_calendar)
@@ -87,7 +89,7 @@ class CTkDatePicker(ctk.CTkFrame):
         if hasattr(self, 'calendar_frame'):
             self.calendar_frame.destroy()
 
-        self.calendar_frame = ctk.CTkFrame(self.popup)
+        self.calendar_frame = ctk.CTkFrame(self.popup, fg_color=cols[1])
         self.calendar_frame.grid(row=0, column=0)
 
         # Add months

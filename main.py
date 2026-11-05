@@ -1,7 +1,10 @@
 import customtkinter
+from pathlib import Path
+
 import customtkinter as ctk
 from assets.calendar.ctk_date_picker import CTkDatePicker
 from pathlib import Path 
+
 
 #----dealing with the fonts---------------------------
 FONT_PATH = Path(__file__).parent / "assets" / "fonts" / "Avenir-Next-Demi.otf"
@@ -15,15 +18,17 @@ locL = ["N/A", "Cafeteria"] # locations
 
 #--------------------------------------------------------------
 
-
+class App(customtkinter.CTk):
 #------Variables-----------------------------------------------
 
 cols = [  "#FDF0D5",  "#669BBC",   "#003049",   "#780000"] # colours
 #      light yellow,  light blue,   dark blue    dark blue
 
-locL = ["N/A", "Cafeteria", "Sigma", "Crowell"] # locations
+locL = ["Other", "Athletics Complex", "BAC","Carnegie Hall", "Cafeteria", "KC Irving Center", "Huggins Science Hall","Patterson Hall", "U Hall", "Outside"] # locations
 
-itmL = ["N/A", "I.D.", "Clothing", "Water bottle", "Electronic"]
+itmL = ["Other", "Bag" ,"Clothing item", "Water bottle", "Electronic",  "I.D.", "Card", "Keys"]
+
+optL = [ "Submit Report", "Browse reports"]
 
 location = "N/A"
 item = "N/A"
@@ -49,6 +54,8 @@ class App(ctk.CTk):
         self.location_title = ctk.CTkLabel(self.main_frame, text="  Location : ", text_color=cols[1], bg_color="transparent", height = 20)
         self.location_title.grid(row=1, column=0, padx=20, pady=20)
 
+        self.button = customtkinter.CTkButton(self, text="Submit",font=("Avenir Next W1G", 20), fg_color=c2 ,command = self.button_callbck)
+        self.button.pack(padx=20, pady=20)
         self.optionmenu_var = ctk.StringVar(value = locL[0])#                     <-- default location is N/A
         self.location_optmenu = ctk.CTkOptionMenu(self.main_frame, values= locL,
                                                         command= self.locationOM_callback,
@@ -66,20 +73,27 @@ class App(ctk.CTk):
                                                         fg_color=cols[1])
         self.item_optmenu.grid(row=2, column=1, padx=20, pady=20)
 
+        self.date_title = ctk.CTkLabel(self.main_frame, text="  Date : ", text_color=cols[1], bg_color="transparent", height = 20)
+        self.date_title.grid(row=3, column=0, padx=20, pady=20)
+
         self.calender = CTkDatePicker(self.main_frame, fg_color=cols[1])
         self.calender.set_allow_manual_input(False)
-        self.calender.grid(row=3, column=0, padx=20, pady=20)
+        self.calender.grid(row=3, column=1, padx=20, pady=20)
 
-        def print_date():
-            print(f"Selected Date: {self.calender.get_date()}")
-
-        self.btn = ctk.CTkButton(self.main_frame, text="Print Date", command=print_date)
-        self.btn.grid(row=3, column=1, padx=20, pady=20)
 
         self.button = ctk.CTkButton(self.main_frame, text="Submit",
                                                     font=("Avenir Next W1G", 20),
                                                     fg_color=cols[1],
                                                     command = self.button_callbck)
+
+        self.button.grid(row=4, column=0, padx=20, pady=10, columnspan = 2)
+        self.sumbit_button = self.button
+
+        self.error_message = ctk.CTkLabel(self.main_frame, text=" ERROR", text_color=cols[1], bg_color="transparent", height = 20)
+        self.error_message.grid(row=5, column=0, padx=20, pady=10, columnspan = 2)
+
+
+
         self.button.grid(row=4, column=0, padx=20, pady=20, columnspan = 2)
         self.sumbit_button = self.button
 
