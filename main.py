@@ -23,6 +23,8 @@ optL = [ "Submit Report", "Browse reports"]
 location = "N/A"
 item = "N/A"
 date = "N/A"
+
+fontSize = [ 10, 15, 20]
 #--------------------------------------------------------------
 
 
@@ -42,7 +44,7 @@ class App(ctk.CTk):
         self.main_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=10, border_color=cols[1])
         self.main_frame.pack(side = "left", padx=20, pady = 20)
 
-        self.top_title = ctk.CTkLabel(self.main_frame, text="  Lost Report ", text_color=cols[1], bg_color="transparent", height = 20)
+        self.top_title = ctk.CTkLabel(self.main_frame, text="  Lost Report ",font=("Avenir Next W1G", fontSize[2]), text_color=cols[1], bg_color="transparent", height = 20)
         self.top_title.grid(row=0, column=0, padx=20, pady=20, columnspan = 2)
 
         self.location_title = ctk.CTkLabel(self.main_frame, text="  Location : ", text_color=cols[1], bg_color="transparent", height = 20)
@@ -50,12 +52,18 @@ class App(ctk.CTk):
 
         self.optionmenu_var = ctk.StringVar(value = locL[0])#                     <-- default location is N/A
         self.location_optmenu = ctk.CTkOptionMenu(self.main_frame, values= locL,
-                                                        command= self.locationOM_callback,
-                                                        variable=self.optionmenu_var,
-                                                        fg_color=cols[1])
+                                                    font=("Avenir Next W1G", fontSize[1]),
+                                                    command= self.locationOM_callback,
+                                                    variable=self.optionmenu_var,
+                                                    fg_color=cols[1])
         self.location_optmenu.grid(row=1, column=1, padx=20, pady=20)
 
-        self.item_title = ctk.CTkLabel(self.main_frame, text="  Item : ", text_color=cols[1], bg_color="transparent", height = 20)
+        self.item_title = ctk.CTkLabel(self.main_frame, 
+                                       text="  Item : ", 
+                                       font=("Avenir Next W1G", fontSize[1]),
+                                       text_color=cols[1], 
+                                       bg_color="transparent", 
+                                       height = 20)
         self.item_title.grid(row=2, column=0, padx=20, pady=20)
 
         self.itemmenu_var = ctk.StringVar(value = itmL[0])#                     <-- default location is N/A
@@ -65,7 +73,12 @@ class App(ctk.CTk):
                                                         fg_color=cols[1])
         self.item_optmenu.grid(row=2, column=1, padx=20, pady=20)
 
-        self.date_title = ctk.CTkLabel(self.main_frame, text="  Date : ", text_color=cols[1], bg_color="transparent", height = 20)
+        self.date_title = ctk.CTkLabel(self.main_frame, 
+                                       text="  Date : ", 
+                                       font=("Avenir Next W1G", fontSize[1]),
+                                       text_color=cols[1], 
+                                       bg_color="transparent", 
+                                       height = 20)
         self.date_title.grid(row=3, column=0, padx=20, pady=20)
 
         self.calender = CTkDatePicker(self.main_frame, fg_color=cols[1])
@@ -73,25 +86,26 @@ class App(ctk.CTk):
         self.calender.grid(row=3, column=1, padx=20, pady=20)
 
 
-        self.button = ctk.CTkButton(self.main_frame, text="Submit",
-                                                    font=("Avenir Next W1G", 20),
+        self.submit_button = ctk.CTkButton(self.main_frame, text="Submit",
+                                                    font=("Avenir Next W1G", fontSize[1]),
                                                     fg_color=cols[1],
-                                                    command = self.button_callbck)
+                                                    command = self.submit_button_callbck)
 
-        self.button.grid(row=4, column=0, padx=20, pady=10, columnspan = 2)
-        self.sumbit_button = self.button
+        self.submit_button.grid(row=4, column=0, padx=20, pady=10, columnspan = 2)
+    
 
-        self.error_message = ctk.CTkLabel(self.main_frame, text=" ERROR", text_color=cols[1], bg_color="transparent", height = 20)
+        self.error_message = ctk.CTkLabel(self.main_frame, text=" ERROR",
+                                          font=("Avenir Next W1G", fontSize[1] ),
+                                          text_color=cols[1], 
+                                          bg_color="transparent",
+                                          height = 20)
         self.error_message.grid(row=5, column=0, padx=20, pady=10, columnspan = 2)
 
 
 
-        self.button.grid(row=4, column=0, padx=20, pady=20, columnspan = 2)
-        self.sumbit_button = self.button
-
-
-    def button_callbck(self):
-        print("button clicked")
+    def submit_button_callbck(self):
+        date = self.calender.get_date()
+        print(f"submit button clicked ( date : {date}, location : {location}, Item : {item} )")
 
     def locationOM_callback(self, choice):
         print("optionmenu dropdown clicked:", choice)
