@@ -3,7 +3,9 @@ import customtkinter as ctk
 from datetime import datetime
 import calendar
 
-cols = [  "#FDF0D5",  "#669BBC",   "#003049",   "#780000"] # added this for the calendar to look more consistent
+import config
+
+cols = config.GUIcolours
 
 class CTkDatePicker(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
