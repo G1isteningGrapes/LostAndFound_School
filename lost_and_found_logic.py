@@ -1,5 +1,5 @@
 # Logic: takes the data from the GUI dropdowns, sorts it, and stores it.
-
+import config
 import json
 from datetime import datetime
 
@@ -11,8 +11,7 @@ STATUS_CLAIMED = "claimed"
 STATUS_RETURNED = "returned"
 
 # Item types
-VALID_ITEM_TYPES = ["Other", "Bag", "Clothing item", "Water bottle",
-                    "Electronic", "I.D.", "Card", "Keys"]
+VALID_ITEM_TYPES = config.items #fetching from the config file
 
 reports = []
 
