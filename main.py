@@ -86,9 +86,10 @@ class App(ctk.CTk):
         self.description_entry = ctk.CTkEntry(self.main_frame, 
                                        placeholder_text = "Enter description here", 
                                        font=("Avenir Next W1G", fontSize[1]),
-                                       text_color=GUIcolours[1], 
-                                       bg_color="transparent", 
-                                       height = 20)
+                                       text_color=GUIcolours[0], 
+                                       bg_color="transparent",
+                                       width = 200,
+                                       height = fontSize[1])
         self.description_entry.grid(row=4, column=1, padx=20, pady=20)
 
 

@@ -1,5 +1,4 @@
-Requirements:
+##Requirements:
 
-pip install customtkinter
-
-pip install CTkMenuBar
+⋅⋅⋅⋅* pip install customtkinter
+⋅⋅⋅⋅* pip install CTkMenuBar
