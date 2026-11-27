@@ -31,7 +31,7 @@ class App(ctk.CTk):
 
     def __init__(self):
         super().__init__()
-        self.geometry("500x500")
+        self.geometry("500x600")
         self.title("Lost and Found")
         self.configure(fg_color=GUIcolours[0])
 
@@ -45,7 +45,7 @@ class App(ctk.CTk):
         self.top_title = ctk.CTkLabel(self.main_frame, text="  Lost Report ",font=("Avenir Next W1G", fontSize[2]), text_color=GUIcolours[1], bg_color="transparent", height = 20)
         self.top_title.grid(row=0, column=0, padx=20, pady=20, columnspan = 2)
 
-        self.location_title = ctk.CTkLabel(self.main_frame, text="  Location : ", text_color=GUIcolours[1], bg_color="transparent", height = 20)
+        self.location_title = ctk.CTkLabel(self.main_frame, text="  Location : ", font=("Avenir Next W1G", fontSize[1]),text_color=GUIcolours[1], bg_color="transparent", height = 20)
         self.location_title.grid(row=1, column=0, padx=20, pady=20)
 
         self.optionmenu_var = ctk.StringVar(value = locations[0])#                     <-- default location is N/A
@@ -68,6 +68,7 @@ class App(ctk.CTk):
         self.item_optmenu = ctk.CTkOptionMenu(self.main_frame, values= items,
                                                         command= self.itemOM_callback,
                                                         variable=self.itemmenu_var,
+                                                        font=("Avenir Next W1G", fontSize[1]),
                                                         fg_color=GUIcolours[1])
         self.item_optmenu.grid(row=2, column=1, padx=20, pady=20)
 
@@ -83,14 +84,41 @@ class App(ctk.CTk):
         self.calender.set_allow_manual_input(False)
         self.calender.grid(row=3, column=1, padx=20, pady=20)
 
-        self.description_entry = ctk.CTkEntry(self.main_frame, 
-                                       placeholder_text = "Enter description here", 
+        self.description_title = ctk.CTkLabel(self.main_frame, 
+                                       text="  Description (Optional) : ", 
                                        font=("Avenir Next W1G", fontSize[1]),
-                                       text_color=GUIcolours[0], 
+                                       text_color=GUIcolours[1], 
+                                       bg_color="transparent", 
+                                       height = 20)
+        self.description_title.grid(row=4, column=0, padx=20, pady=20)
+
+        self.description_entry = ctk.CTkEntry(self.main_frame, 
+                                       placeholder_text = "MAX 50 char", 
+                                       font=("Avenir Next W1G", fontSize[1]),
+                                       text_color=GUIcolours[1], 
                                        bg_color="transparent",
+                                       border_color = GUIcolours[1],
                                        width = 200,
                                        height = fontSize[1])
         self.description_entry.grid(row=4, column=1, padx=20, pady=20)
+
+        self.email_title = ctk.CTkLabel(self.main_frame, 
+                                       text="  Email address : ", 
+                                       font=("Avenir Next W1G", fontSize[1]),
+                                       text_color=GUIcolours[1], 
+                                       bg_color="transparent", 
+                                       height = 20)
+        self.email_title.grid(row=5, column=0, padx=20, pady=20)
+
+        self.email_entry = ctk.CTkEntry(self.main_frame, 
+                                       placeholder_text = "don't forget @acadiau.ca", 
+                                       font=("Avenir Next W1G", fontSize[1]),
+                                       text_color=GUIcolours[1], 
+                                       bg_color="transparent",
+                                       border_color = GUIcolours[1],
+                                       width = 200,
+                                       height = fontSize[1])
+        self.email_entry.grid(row=5, column=1, padx=20, pady=20)
 
 
         self.submit_button = ctk.CTkButton(self.main_frame, text="Submit",
@@ -98,7 +126,7 @@ class App(ctk.CTk):
                                                     fg_color=GUIcolours[1],
                                                     command = self.submit_button_callbck)
 
-        self.submit_button.grid(row=5, column=0, padx=20, pady=10, columnspan = 2)
+        self.submit_button.grid(row=6, column=0, padx=20, pady=10, columnspan = 2)
     
 
         self.error_message = ctk.CTkLabel(self.main_frame, text=" ERROR",
@@ -106,7 +134,7 @@ class App(ctk.CTk):
                                           text_color=GUIcolours[1], 
                                           bg_color="transparent",
                                           height = 20)
-        self.error_message.grid(row=6, column=0, padx=20, pady=10, columnspan = 2)
+        self.error_message.grid(row=7, column=0, padx=20, pady=10, columnspan = 2)
 
 
 
